@@ -5,7 +5,7 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
 public class RecursiveActionOnObjectDemo {
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         List<BigInteger> list = new ArrayList<>();
         int SIZE = 1_000_000;
         for (int i = 0; i < SIZE; i++) {
@@ -17,14 +17,14 @@ public class RecursiveActionOnObjectDemo {
         ForkJoinPool pool = new ForkJoinPool(100);
         pool.invoke(modifyListTask);
         boolean failFlag = false;
-        for(BigInteger i: list){
-            if(i.intValue() != 0){
+        for (BigInteger i : list) {
+            if (i.intValue() != 0) {
                 System.out.println("got non 0");
                 failFlag = true;
                 break;
             }
         }
-        if(!failFlag){
+        if (!failFlag) {
             System.out.println("all changed to 0");
         }
     }
@@ -46,15 +46,15 @@ class ModifyList extends RecursiveAction {
     }
 
     @Override
-    protected void compute () {
+    protected void compute() {
         if (this.r - this.l < SEQUENTIAL_THRESHOLD) {
-            for(int i=l; i<r; i++){
+            for (int i = l; i < r; i++) {
 //                System.out.println(String.format("performing modification for idx: %d - %d", l, r));
                 this.lst.set(i, new BigInteger("0"));
             }
         } else {
-            ModifyList leftTask = new ModifyList(l, (l+r)/2, lst);
-            ModifyList rightTask = new ModifyList((l+r)/2, r, lst);
+            ModifyList leftTask = new ModifyList(l, (l + r) / 2, lst);
+            ModifyList rightTask = new ModifyList((l + r) / 2, r, lst);
 //            leftTask.fork();
 //            rightTask.fork();
             invokeAll(leftTask, rightTask);

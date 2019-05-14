@@ -6,21 +6,21 @@ public class RaceConditionInRecursiveActionDemo {
         ForkJoinPool pool = new ForkJoinPool(10);
 //        int[] data = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         int limit = 3000;
-        int [] data = new int[limit];     // 10000 sorted integers
+        int[] data = new int[limit];     // 10000 sorted integers
         for (int v = 0; v < limit; v++) { // loop from 0 to 999
             data[v] = v + 1; // Set ten elements per value of the outer loop
         }
 
         int target = 414565908;
-        for(int i=0; i< 50; i++) {
+        for (int i = 0; i < 50; i++) {
             Square app = new Square(data, 0, data.length);
             pool.invoke(app);
             System.out.println(app.result);
-            if (app.result != target){
+            if (app.result != target) {
                 System.out.println(String.format("race condition happened, %d != %d", app.result, target));
                 break;
             }
-            Square.result =0;
+            Square.result = 0;
         }
     }
 }

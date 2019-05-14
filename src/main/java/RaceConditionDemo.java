@@ -1,6 +1,6 @@
 public class RaceConditionDemo {
 
-    public static void main(String[] args) throws InterruptedException{
+    public static void main(String[] args) throws InterruptedException {
         System.out.println("hello world");
         MyCounter counter = new MyCounter();
         Thread thread1 = new Thread(new CounterIncRunnable(counter));
@@ -29,7 +29,7 @@ class CounterIncRunnable implements Runnable {
     public void run() {
         long threadId = Thread.currentThread().getId();
         System.out.println("Thread # " + threadId + " is doing this task");
-        for ( int i=0; i<1000000; i++ ) {
+        for (int i = 0; i < 1000000; i++) {
             counter.increment();
         }
     }
@@ -38,15 +38,15 @@ class CounterIncRunnable implements Runnable {
 class MyCounter {
     private volatile int c = 0;
 
-    public  void increment() {
+    public void increment() {
         c++;
     }
 
-    public   void decrement() {
+    public void decrement() {
         c--;
     }
 
-    public  int value() {
+    public int value() {
         return c;
     }
 }

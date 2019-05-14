@@ -2,7 +2,7 @@ import java.util.concurrent.*;
 
 public class ExecutorServiceCallableDemo {
 
-    public static void main(String[] args) throws InterruptedException{
+    public static void main(String[] args) throws InterruptedException {
         System.out.println("hello world");
 
         ExecutorService executor = Executors.newFixedThreadPool(2);
@@ -31,8 +31,9 @@ public class ExecutorServiceCallableDemo {
 
 class CounterIncCallable implements Callable<Integer> {
     private int num = 0;
-    private String id  = "";
-    public CounterIncCallable(int num, String id){
+    private String id = "";
+
+    public CounterIncCallable(int num, String id) {
         this.num = num;
         this.id = id;
     }
@@ -43,8 +44,8 @@ class CounterIncCallable implements Callable<Integer> {
         long threadId = Thread.currentThread().getId();
         System.out.println("Thread # " + threadId + " is doing this task");
         int result = 0;
-        for(int i=1;i<=num;i++){
-            result+=i;
+        for (int i = 1; i <= num; i++) {
+            result += i;
         }
         return result;
     }

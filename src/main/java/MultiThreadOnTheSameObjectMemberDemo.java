@@ -44,7 +44,7 @@ class ModifyMember implements Runnable {
     public void run() {
 //        System.out.println("Thread # " + Thread.currentThread().getId() + " is doing this task");
 //        synchronized(so) {
-            this.so.resultAddOne();
+        this.so.resultAddOne();
 //        }
 
     }
@@ -58,7 +58,7 @@ class SampleObject {
     }
 
     public void resultAddOne() {
-            this.result += 1;
+        this.result += 1;
 
     }
 }

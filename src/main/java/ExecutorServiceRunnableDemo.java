@@ -1,8 +1,9 @@
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ExecutorServiceRunnableDemo {
 
-    public static void main(String[] args) throws InterruptedException{
+    public static void main(String[] args) throws InterruptedException {
         System.out.println("hello world");
 
         ExecutorService executor = Executors.newFixedThreadPool(2);
@@ -19,21 +20,22 @@ public class ExecutorServiceRunnableDemo {
 
 class CounterIncRunable implements Runnable {
     private int num = 0;
-    private String id  = "";
-    public CounterIncRunable(int num, String id){
+    private String id = "";
+
+    public CounterIncRunable(int num, String id) {
         this.num = num;
         this.id = id;
     }
 
-    public void run()  {
+    public void run() {
         System.out.println("thread comes in");
         System.out.println("Worker ID: " + this.id);
         long threadId = Thread.currentThread().getId();
         System.out.println("Thread # " + threadId + " is doing this task");
         int result = 0;
-        for(int i=1;i<=num;i++){
-            result+=i;
+        for (int i = 1; i <= num; i++) {
+            result += i;
         }
-        System.out.println(this.id + " result: " + String.valueOf(result) );
+        System.out.println(this.id + " result: " + String.valueOf(result));
     }
 }
