@@ -43,9 +43,9 @@ class ModifyMember implements Runnable {
     @Override
     public void run() {
 //        System.out.println("Thread # " + Thread.currentThread().getId() + " is doing this task");
-//        synchronized(so) {
-        this.so.resultAddOne();
-//        }
+        synchronized (so) {
+            this.so.resultAddOne();
+        }
 
     }
 }
